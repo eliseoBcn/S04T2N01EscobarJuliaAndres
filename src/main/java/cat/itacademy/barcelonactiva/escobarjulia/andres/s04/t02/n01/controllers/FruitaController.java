@@ -33,34 +33,7 @@ public class FruitaController {
 	
 	@Autowired
 	FrutaService frutaService;
-//
-	FrutaRepository frutaRepository;
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<HttpStatus> DeleteId(@PathVariable("id") long id) {
-		Optional<Fruta> frutaData = frutaService.GetFrutaByID(id);
-		System.out.println("delete ");
-		if (frutaData.isPresent()) {
-			frutaService.DeleteItem(id);
-			return new ResponseEntity<>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-	
-	
-//	@PostMapping("/delete/{id}")
-//	public void DeleteId(@PathVariable("id") long id) {
-//		Optional<Fruta> frutaData = frutaService.GetFrutaByID(id);
-//		System.out.println("delete ");
-////		if (frutaData.isPresent()) {
-////			frutaService.DeleteItem(id);
-////			return new ResponseEntity<>(HttpStatus.OK);
-////		} else {
-////			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-////		}
-//	}
-	
-	
+		
 	@PostMapping("/add")
 	public ResponseEntity<Fruta> createFruta(@RequestBody Fruta fruta) {
         long frutaId = 0;
@@ -76,33 +49,18 @@ public class FruitaController {
 		
 	}
 	
-	
-	
-//	@DeleteMapping("/delete/{id}")
-//	public ResponseEntity<String> deleteFruta(@PathVariable("id") long id) {
-//
-//	      //verify if the id provided is valid before deleting
-//        boolean isFrutaIdValid=frutaService.isFrutaItemIdValid(id);
-//        System.out.println( "/delete/id    " + id + " " + isFrutaIdValid  );
-//        if(isFrutaIdValid){
-//
-//            frutaService.DeleteItem(id);
-//                return new ResponseEntity<>( "Operación de borrado realizada " ,HttpStatus.OK);
-//        }else {
-//            return new ResponseEntity<>("El identificador " + id + " no existe en la base de datos " ,HttpStatus.NOT_FOUND);
-//        }
-//
-//		
-////		try {
-////			frutaRepository.deleteById(id);
-////			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-////		} catch (Exception e) {
-////			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-////		}
-//
-//	}
-//	
-	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<HttpStatus> DeleteId(@PathVariable("id") long id) {
+		Optional<Fruta> frutaData = frutaService.GetFrutaByID(id);
+		System.out.println("delete ");
+		if (frutaData.isPresent()) {
+			frutaService.DeleteItem(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Fruta> updateFruta(@PathVariable("id") long id, @RequestBody Fruta fruta) {
 	
@@ -127,7 +85,6 @@ public class FruitaController {
 
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Fruta>> getAllFrutas(@RequestParam(required = false) String nombre) {
-
 		
 			List<Fruta> fruta  =  frutaService.getMyFrutaList();
 			if ( fruta.size() > 0 ) {
@@ -147,11 +104,6 @@ public class FruitaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-
-	
-
-	
 	
 
 }
