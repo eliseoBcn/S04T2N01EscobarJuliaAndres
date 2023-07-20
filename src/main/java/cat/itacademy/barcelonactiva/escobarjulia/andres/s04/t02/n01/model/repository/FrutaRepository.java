@@ -12,7 +12,7 @@ import cat.itacademy.barcelonactiva.escobarjulia.andres.s04.t02.n01.model.domain
 	public interface FrutaRepository extends JpaRepository<Fruta, Long> {
 //		  List<Tutorial> findByPublished(boolean published);
 //
-		  List<Fruta> findBynombre(String nombre);
+//		  List<Fruta> findBynombre(String nombre);
 	}
 	
  
