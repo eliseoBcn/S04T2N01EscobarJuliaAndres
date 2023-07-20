@@ -27,6 +27,7 @@ public class FrutaServiceImpl  implements FrutaService {
      * Retrieve to-do list
      * @return
      */
+    @Override
     public List<Fruta> getMyFrutaList(){
         List<Fruta> frutaList= new ArrayList<>();
         frutaRepository.findAll().forEach(frutaList::add);
@@ -40,6 +41,7 @@ public class FrutaServiceImpl  implements FrutaService {
      * @param frutaId
      * @return
      */
+    @Override
     public Optional<Fruta> GetFrutaByID(long frutaId){
         return frutaRepository.findById(frutaId);
     }
@@ -49,6 +51,7 @@ public class FrutaServiceImpl  implements FrutaService {
      * @param fruta
      * @return
      */
+    @Override
     public long AddItemToThelist(Fruta fruta){
         long frutaId=0;
         frutaRepository.save(fruta);
@@ -64,6 +67,7 @@ public class FrutaServiceImpl  implements FrutaService {
      * Delete item from the list
      * @param id
      */
+    @Override
     public void DeleteItem(long id){
         long itemId=0;
         frutaRepository.deleteById(id);
@@ -76,6 +80,8 @@ public class FrutaServiceImpl  implements FrutaService {
      * @param fruta
      * @return
      */
+    @Override
+
     public long UpdateFrutaItem(long frutaId, Fruta fruta){
 
         long updateFrutaId=0;
@@ -95,21 +101,21 @@ public class FrutaServiceImpl  implements FrutaService {
 
     }
 
-
     /**
      * Verify if the id provided is valid
      * @param frutaId
      * @return
      */
+    @Override
     public boolean isFrutaItemIdValid(long frutaId){
         return frutaRepository.findById(frutaId).isPresent();
     }
-
 
     /**
      * returns number of items
      * @return
      */
+    @Override
     public long getNumberFrutaItem(){
       return frutaRepository.count();
     }
